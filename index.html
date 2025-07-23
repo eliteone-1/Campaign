@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" x-data="slider()" x-init="start()">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campaign Site</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Alpine.js CDN for slider logic -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="bg-white text-gray-800">
+
+  <!-- HERO SECTION WITH SLIDER -->
+  <section class="relative overflow-hidden">
+    <div class="w-full h-[70vh] md:h-[90vh] relative">
+        <template x-for="(slide, index) in slides" :key="index">
+            <div
+                x-show="active === index"
+                class="absolute inset-0 transition-opacity duration-700"
+                x-transition:enter="opacity-0"
+                x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100"
+            >
+                <img :src="slide.image" :alt="slide.alt" class="w-full h-full object-cover" />
+                
+                <!-- New text wrapper: Bottom-left alignment -->
+                <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black flex items-end justify-start p-6">
+                <div class="text-white space-y-4" x-html="slide.content"></div>
+                </div>
+            </div>
+        </template>
+
+
+      <!-- Navigation buttons -->
+      <div class="absolute left-0 top-1/2 transform -translate-y-1/2 px-4">
+        <button aria-label="Previous slide" @click="prev()" class="bg-white/70 text-gray-800 px-3 py-2 rounded-full">⟵</button>
+      </div>
+      <div class="absolute right-0 top-1/2 transform -translate-y-1/2 px-4">
+        <button aria-label="Next slide" @click="next()" class="bg-white/70 text-gray-800 px-3 py-2 rounded-full">⟶</button>
+      </div>
+    </div>
+  </section>
+
+    <!-- About Section -->
+  <section class="py-16 px-4 max-w-5xl mx-auto text-center">
+    <h2 class="text-3xl font-bold mb-4">About Our Campaign</h2>
+    <p class="text-lg text-gray-600">
+        Hon. Prince Joe Okogie is a dedicated servant-leader with a long history of community development, youth engagement, and transparent leadership.
+        From grassroots initiatives to policy advocacy, his journey has always been powered by the people — and now he is ready to take your voice to the Senate.
+        As a lifelong advocate for equity, progress, and grassroots development, Prince Joe Okogie is stepping forward to bring real change to the Senate. <br/>
+        He stands for job creation, youth empowerment, accessible education, healthcare reform, and infrastructural development that touches every life.
+        He is not here to maintain the status quo. He is here to break it — for the better.
+    </p>
+  </section>
+
+    <!-- Visions and missions Section -->
+    <section class="py-20 bg-blue-50 text-gray-800 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold">Our Vision</h2>
+        <p class="mt-4 max-w-2xl mx-auto text-lg">
+            Hon. Prince Joe Okogie is not just a politician — he is a public servant driven by purpose, committed to justice, and rooted in the needs of the people.
+            With years of proven leadership, unwavering integrity, and a deep understanding of our community’s struggles, he is ready to champion laws that protect your rights, uplift your families, and build a stronger, more united future.
+            The time for empty promises is over. The time for action is now.    
+        </p>
+    </section>
+
+    <!-- Key promises and agenda -->
+    <section class="py-20 bg-gray-100 text-gray-800">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Key Promises</h2>
+            <p class="text-lg mb-12 max-w-2xl mx-auto">
+            We are committed to driving meaningful change in every community, for every citizen.
+            </p>
+
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <!-- Promise 1 -->
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <div class="text-blue-600 text-4xl mb-4">
+                📈
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Job Creation</h3>
+                <p class="text-sm text-gray-600">
+                    Empowering the youth and small businesses through innovation and entrepreneurship.
+                </p>
+        </div>
+
+            <!-- Promise 2 -->
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <div class="text-green-600 text-4xl mb-4">
+                📚
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Education Reform</h3>
+                <p class="text-sm text-gray-600">
+                    Accessible and quality education that prepares every child for the future.
+                </p>
+            </div>
+
+            <!-- Promise 3 -->
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <div class="text-red-600 text-4xl mb-4">
+                🏥
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Healthcare Access</h3>
+                <p class="text-sm text-gray-600">
+                    Affordable and efficient healthcare systems in every region.
+                </p>
+            </div>
+
+            <!-- Promise 4 -->
+            <div class="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
+                <div class="text-yellow-500 text-4xl mb-4">
+                🌱
+                </div>
+                <h3 class="text-xl font-semibold mb-2">Sustainable Growth</h3>
+                <p class="text-sm text-gray-600">
+                    A green economy that protects the environment and secures the future.
+                </p>
+            </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Call to Action -->
+  <section class="py-12 bg-blue-50 text-center">
+    <h3 class="text-2xl font-semibold mb-4">Ready to take action?</h3>
+    <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg">Get Involved</button>
+  </section>
+
+    <!-- Footer -->
+  <footer class="py-8 text-center text-sm text-gray-500">
+    &copy; 2026 Campaign for Progress. All rights reserved.
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
